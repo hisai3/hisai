@@ -1,0 +1,217 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>vue组件库打包 | 一条咸鱼</title><meta name="author" content="hsiai"><meta name="copyright" content="hsiai"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="封装vue组件库的两种方法和形式： 方式一：是建立一个webpack-simple 项目   方式二：是在通过vue-cli脚手架建立webpack vue项目，这种项目有点冗余，可是我们对这种项目最熟悉下面分别介绍两种用法：  方式一：1. 首先先建立一个vue项目：通过vue init webpack-simple，新建项目目录如下： 箭头指的是在项目打包后产生的文件（打包命令npm run">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue组件库打包">
+<meta property="og:url" content="https://hisai3.github.io/hisai3.github.io/2023/01/14/vue%E7%BB%84%E4%BB%B6%E5%BA%93%E6%89%93%E5%8C%85/index.html">
+<meta property="og:site_name" content="一条咸鱼">
+<meta property="og:description" content="封装vue组件库的两种方法和形式： 方式一：是建立一个webpack-simple 项目   方式二：是在通过vue-cli脚手架建立webpack vue项目，这种项目有点冗余，可是我们对这种项目最熟悉下面分别介绍两种用法：  方式一：1. 首先先建立一个vue项目：通过vue init webpack-simple，新建项目目录如下： 箭头指的是在项目打包后产生的文件（打包命令npm run">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://static.runoob.com/images/mix/3DF91CB4-0A60-444F-971D-88A58C4EDBFD.png">
+<meta property="article:published_time" content="2023-01-14T06:31:31.000Z">
+<meta property="article:modified_time" content="2023-01-15T07:08:55.988Z">
+<meta property="article:author" content="hsiai">
+<meta property="article:tag" content="webpack">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://static.runoob.com/images/mix/3DF91CB4-0A60-444F-971D-88A58C4EDBFD.png"><link rel="shortcut icon" href="https://gitee.com/hisai/image-bed/raw/master/BlogMedia/favicon.ico"><link rel="canonical" href="https://hisai3.github.io/hisai3.github.io/2023/01/14/vue%E7%BB%84%E4%BB%B6%E5%BA%93%E6%89%93%E5%8C%85/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/hisai3.github.io/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/hisai3.github.io/',
+  algolia: undefined,
+  localSearch: {"path":"/hisai3.github.io/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'vue组件库打包',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-01-15 15:08:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="referrer" content="no-referrer" /><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/hisai3.github.io/atom.xml" title="一条咸鱼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://gitee.com/hisai/image-bed/raw/master/BlogMedia/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/hisai3.github.io/archives/"><div class="headline">文章</div><div class="length-num">62</div></a><a href="/hisai3.github.io/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/hisai3.github.io/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/hisai3.github.io/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/hisai3.github.io/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://static.runoob.com/images/mix/3DF91CB4-0A60-444F-971D-88A58C4EDBFD.png')"><nav id="nav"><span id="blog-info"><a href="/hisai3.github.io/" title="一条咸鱼"><span class="site-name">一条咸鱼</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/hisai3.github.io/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/hisai3.github.io/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">vue组件库打包</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-14T06:31:31.000Z" title="发表于 2023-01-14 14:31:31">2023-01-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-15T07:08:55.988Z" title="更新于 2023-01-15 15:08:55">2023-01-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/hisai3.github.io/categories/webpack/">webpack</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="封装vue组件库的两种方法和形式："><a href="#封装vue组件库的两种方法和形式：" class="headerlink" title="封装vue组件库的两种方法和形式："></a>封装vue组件库的两种方法和形式：</h1><blockquote>
+<p>方式一：是建立一个webpack-simple 项目</p>
+</blockquote>
+<blockquote>
+<p>方式二：是在通过vue-cli脚手架建立webpack vue项目，这种项目有点冗余，可是我们对这种项目最熟悉<br>下面分别介绍两种用法：</p>
+</blockquote>
+<h2 id="方式一："><a href="#方式一：" class="headerlink" title="方式一："></a>方式一：</h2><p><strong>1. 首先先建立一个vue项目：</strong><br>通过vue init webpack-simple，新建项目目录如下：</p>
+<p><img src="https://img-blog.csdn.net/20180907194209878?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NzY3Njc3Nqc3A=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"><br>箭头指的是在项目打包后产生的文件（打包命令npm run build ）</p>
+<p><strong>2. 在src下新建一个目录用来存放组件源码：</strong><br><img src="https://img-blog.csdn.net/2018090719440239?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NzY3Njc3Nqc3A=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p>然后写封装的组件，比如radios&#x2F;radio.vue</p>
+<p><strong>3. 组件封装完后新建index.js文件，作为我们组件库的出入口，index.js内容如下：</strong><br><img src="https://img-blog.csdn.net/2018090719473733?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NzY3Njc3Nqc3A=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p>上图中comment应该换成components，也就是你自己命名的变量名</p>
+<p><strong>4. 完了之后修改package.json文件，修改如下：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;name&quot;</span>: <span class="string">&quot;hz-components-ui&quot;</span>,</span><br><span class="line">  <span class="string">&quot;description&quot;</span>: <span class="string">&quot;uicomponents&quot;</span>,</span><br><span class="line">  <span class="string">&quot;version&quot;</span>: <span class="string">&quot;0.0.0&quot;</span>,</span><br><span class="line">  <span class="string">&quot;author&quot;</span>: <span class="string">&quot;wyx&quot;</span>,</span><br><span class="line">  <span class="string">&quot;license&quot;</span>: <span class="string">&quot;MIT&quot;</span>,</span><br><span class="line">  <span class="comment">// 因为组件包是公用的，所以private为false</span></span><br><span class="line">  <span class="string">&quot;private&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;dev&quot;</span>: <span class="string">&quot;cross-env NODE_ENV=development webpack-dev-server --open --hot&quot;</span>,</span><br><span class="line">    <span class="string">&quot;build&quot;</span>: <span class="string">&quot;cross-env NODE_ENV=production webpack --progress --hide-modules&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 配置main结点，如果不配置，我们在其他项目中就不用import XX from &#x27;包名&#x27;来引用了，只能以包名作为起点来指定相对的路径</span></span><br><span class="line">  <span class="string">&quot;main&quot;</span>: <span class="string">&quot;dist/hz-components-ui.min.js&quot;</span>,</span><br><span class="line">  <span class="comment">// 项目官网的url</span></span><br><span class="line">  <span class="string">&quot;homepage&quot;</span>: <span class="string">&quot;https://wuyxgit.github.io/vueBuildTest/dist/index.html#/&quot;</span>,</span><br><span class="line">  <span class="string">&quot;bugs&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;url&quot;</span>: <span class="string">&quot;https://github.com/hamger/hg-vcomponents/issues&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 指定代码所在的仓库地址</span></span><br><span class="line">  <span class="string">&quot;repository&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;type&quot;</span>: <span class="string">&quot;git&quot;</span>,</span><br><span class="line">    <span class="string">&quot;url&quot;</span>: <span class="string">&quot;git+https://github.com/wuyxgit/vueBuildTest.git&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;dependencies&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;vue&quot;</span>: <span class="string">&quot;^2.5.11&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 指定关键字</span></span><br><span class="line">  <span class="string">&quot;keywords&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;hz&quot;</span>,</span><br><span class="line">    <span class="string">&quot;components&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="comment">// 指定打包后发布到npm的文件名，没指定则不传，package.json是默认上传的</span></span><br><span class="line">  <span class="string">&quot;files&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;dist&quot;</span>,</span><br><span class="line">    <span class="string">&quot;src/lib&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">&quot;browserslist&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;&gt; 1%&quot;</span>,</span><br><span class="line">    <span class="string">&quot;last 2 versions&quot;</span>,</span><br><span class="line">    <span class="string">&quot;not ie &lt;= 8&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">&quot;devDependencies&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;babel-core&quot;</span>: <span class="string">&quot;^6.26.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;babel-loader&quot;</span>: <span class="string">&quot;^7.1.2&quot;</span>,</span><br><span class="line">    <span class="string">&quot;babel-preset-env&quot;</span>: <span class="string">&quot;^1.6.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;babel-preset-stage-3&quot;</span>: <span class="string">&quot;^6.24.1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;cross-env&quot;</span>: <span class="string">&quot;^5.0.5&quot;</span>,</span><br><span class="line">    <span class="string">&quot;css-loader&quot;</span>: <span class="string">&quot;^0.28.7&quot;</span>,</span><br><span class="line">    <span class="string">&quot;file-loader&quot;</span>: <span class="string">&quot;^1.1.4&quot;</span>,</span><br><span class="line">    <span class="string">&quot;vue-loader&quot;</span>: <span class="string">&quot;^13.0.5&quot;</span>,</span><br><span class="line">    <span class="string">&quot;vue-template-compiler&quot;</span>: <span class="string">&quot;^2.4.4&quot;</span>,</span><br><span class="line">    <span class="string">&quot;webpack&quot;</span>: <span class="string">&quot;^3.6.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;webpack-dev-server&quot;</span>: <span class="string">&quot;^2.9.1&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>5. 修改webpack.comfig.js文件：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">entry</span>: <span class="string">&quot;./src/lib/index.js&quot;</span>,</span><br><span class="line"><span class="attr">output</span>: &#123;</span><br><span class="line">  <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;./dist&#x27;</span>),</span><br><span class="line">  <span class="attr">publicPath</span>: <span class="string">&#x27;/dist/&#x27;</span>,</span><br><span class="line">  <span class="comment">// filename: &#x27;build.js&#x27;</span></span><br><span class="line">  <span class="attr">filename</span>: <span class="string">&quot;hz-components-ui.min.js&quot;</span>,</span><br><span class="line">  <span class="attr">library</span>: <span class="string">&quot;hzComponentsUI&quot;</span>,</span><br><span class="line">  <span class="attr">libraryTarget</span>: <span class="string">&quot;umd&quot;</span>,</span><br><span class="line">  <span class="attr">umdNamedDefine</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180907195438958?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NzY3Njc3Nqc3A=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"><br>箭头指的是修改的部分，红圈内的是新增部分</p>
+<p><strong>6. 打包通过npm run build 命令，打包完成后产生dist文件，内容如下</strong>：<br><img src="https://img-blog.csdn.net/20180907195647885?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NzY3Njc3Nqc3A=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p><strong>7. 现在本地找一个项目测试是否可用，先执行命令 npm pack ，会产生一个压缩包</strong><br><img src="https://img-blog.csdn.net/2018090719584719?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NzY3Njc3Nqc3A=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p>箭头所指的tgz文件，然后在测试项目中，通过npm install 路径\文件全名</p>
+<p>路径是指压缩包所在的绝对路径，文件名指的是压缩包的全名</p>
+<p><strong>8. 安装后直接在测试项目的入口文件mian.js内引入，和引入elementUI一样</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> 名称 <span class="keyword">from</span> ‘组件库名’</span><br><span class="line"></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(名称)；</span><br></pre></td></tr></table></figure>
+
+<p>然后在项目的任意组件中引用就行了，如果引入成功，则说明打包成功，接下来就是发布到npm上了</p>
+<p><strong>9. 发布到npm上</strong><br>回到组件库项目的根目录下：</p>
+<ol>
+<li><p>npm login     登录到npm上</p>
+</li>
+<li><p>npm version patch  这是把版本迭代一级，每次更新时都需要输入这个命令，或者直接在package.json中修改版本号，只要与npm上的版本不同就行</p>
+</li>
+<li><p>npm publish  提交到npm上，至此就完成发布npm的全部了</p>
+</li>
+</ol>
+<p>项目访问组件库，就可以直接输入 npm i&#x2F;install 组件库名称来安装，然后同上第八步就可以了</p>
+<h2 id="方式二："><a href="#方式二：" class="headerlink" title="方式二："></a>方式二：</h2><p><strong>1. 首先通过vue init webpack 项目名 ，项目目录如下：</strong><br><img src="https://img-blog.csdn.net/20180910140055770?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NzY3Njc3Nqc3A=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p><strong>2. 封装组件</strong><br>在componetns文件下新建vue组件，放功能源码，添加index.js，实现封装后的组件的出入口<br><img src="https://img-blog.csdn.net/2018091014055326?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NzY3Njc3Nqc3A=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p><strong>3. index.js添加内容如下：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hzRadio <span class="keyword">from</span> <span class="string">&#x27;./radios/radio.vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> hzTimePicker <span class="keyword">from</span> <span class="string">&#x27;./timePickers/timePicker&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> components = &#123;</span><br><span class="line">  <span class="title function_">install</span>(<span class="params">Vue</span>)&#123;</span><br><span class="line">    <span class="title class_">Vue</span>.<span class="title function_">component</span>(<span class="string">&#x27;hzRadio&#x27;</span>,hzRadio);</span><br><span class="line">    <span class="title class_">Vue</span>.<span class="title function_">component</span>(<span class="string">&#x27;hzTimePicker&#x27;</span>,hzTimePicker);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 这里的判断很重要</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="variable language_">window</span> !== <span class="string">&#x27;undefined&#x27;</span> &amp;&amp; <span class="variable language_">window</span>.<span class="property">Vue</span>) &#123;</span><br><span class="line">  <span class="variable language_">window</span>.<span class="property">Vue</span>.<span class="title function_">use</span>(components);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span>  <span class="keyword">default</span> components;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>4. 修改webpack.base.conf.js和webpack.prod.conf.js<br>webpack.base.conf.js</strong></p>
+<p><img src="https://img-blog.csdn.net/20180910141216604?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NzY3Njc3Nqc3A=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p>webpack.prod.conf.js</p>
+<p>修改生产环境的出口<br><img src="https://img-blog.csdn.net/20180910141328213?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NzY3Njc3Nqc3A=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p>修改生产环境的样式文件，打包后所有的样式都会在这个文件下<br><img src="https://img-blog.csdn.net/20180910141704470?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NzY3Njc3Nqc3A=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p>把下面的这两个注释掉，不然npm run build 打包时会失败，<br><img src="https://img-blog.csdn.net/20180910143833546?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NzY3Njc3Nqc3A=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p>这个可以注释也可以不注释，全部注释的话打包后不会产生index.html文件<br><img src="https://img-blog.csdn.net/20180910143904161?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NzY3Njc3Nqc3A=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p><strong>5. 修改package.json文件，添加项目源码地址，demo测试地址，以及一些配置：</strong><br><img src="https://img-blog.csdn.net/20180910144411662?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NzY3Njc3Nqc3A=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"><br><strong>6. 修改后打包：</strong><br><img src="https://img-blog.csdn.net/20180910144729603?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NzY3Njc3Nqc3A=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p>剩下的7，8，9三步同上第一种方法的7，8，9三步！！！</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://hisai3.github.io/hisai3.github.io">hsiai</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hisai3.github.io/hisai3.github.io/2023/01/14/vue%E7%BB%84%E4%BB%B6%E5%BA%93%E6%89%93%E5%8C%85/">https://hisai3.github.io/hisai3.github.io/2023/01/14/vue%E7%BB%84%E4%BB%B6%E5%BA%93%E6%89%93%E5%8C%85/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hisai3.github.io/hisai3.github.io" target="_blank">一条咸鱼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/hisai3.github.io/tags/webpack/">webpack</a><a class="post-meta__tags" href="/hisai3.github.io/tags/vue/">vue</a></div><div class="post_share"><div class="social-share" data-image="https://static.runoob.com/images/mix/3DF91CB4-0A60-444F-971D-88A58C4EDBFD.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/hisai3.github.io/2023/01/14/vue.config/" title="vue.config"><img class="cover" src="https://static.runoob.com/images/mix/rfwDB3L.png" onerror="onerror=null;src='/hisai3.github.io/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">vue.config</div></div></a></div><div class="next-post pull-right"><a href="/hisai3.github.io/2023/01/14/watch/" title="watch"><img class="cover" src="https://static.runoob.com/images/mix/code-wallpaper-15.jpg" onerror="onerror=null;src='/hisai3.github.io/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">watch</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/hisai3.github.io/2023/01/14/vue.config/" title="vue.config"><img class="cover" src="https://static.runoob.com/images/mix/rfwDB3L.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-14</div><div class="title">vue.config</div></div></a></div><div><a href="/hisai3.github.io/2023/01/14/webpack/" title="webpack"><img class="cover" src="https://static.runoob.com/images/mix/rfwDB3L.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-14</div><div class="title">webpack</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://gitee.com/hisai/image-bed/raw/master/BlogMedia/avatar.jpg" onerror="this.onerror=null;this.src='/hisai3.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">hsiai</div><div class="author-info__description">有风听风，有雨看雨</div></div><div class="card-info-data site-data is-center"><a href="/hisai3.github.io/archives/"><div class="headline">文章</div><div class="length-num">62</div></a><a href="/hisai3.github.io/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/hisai3.github.io/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hisai3"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%81%E8%A3%85vue%E7%BB%84%E4%BB%B6%E5%BA%93%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95%E5%92%8C%E5%BD%A2%E5%BC%8F%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">封装vue组件库的两种方法和形式：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">方式一：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">方式二：</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/hisai3.github.io/2023/01/14/HEXO%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="HEXO 搭建博客"><img src="https://static.runoob.com/images/mix/65F53C2E-D255-4EE9-A675-F0C0F3F69D2B.png" onerror="this.onerror=null;this.src='/hisai3.github.io/img/404.jpg'" alt="HEXO 搭建博客"/></a><div class="content"><a class="title" href="/hisai3.github.io/2023/01/14/HEXO%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="HEXO 搭建博客">HEXO 搭建博客</a><time datetime="2023-01-14T06:55:31.000Z" title="发表于 2023-01-14 14:55:31">2023-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/hisai3.github.io/2023/01/14/Css%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80grid/" title="Css响应式布局grid"><img src="https://static.runoob.com/images/mix/phpWVg9UN.jpeg" onerror="this.onerror=null;this.src='/hisai3.github.io/img/404.jpg'" alt="Css响应式布局grid"/></a><div class="content"><a class="title" href="/hisai3.github.io/2023/01/14/Css%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80grid/" title="Css响应式布局grid">Css响应式布局grid</a><time datetime="2023-01-14T06:31:31.000Z" title="发表于 2023-01-14 14:31:31">2023-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/hisai3.github.io/2023/01/14/Echarts/" title="Echarts"><img src="https://static.runoob.com/images/mix/65F53C2E-D255-4EE9-A675-F0C0F3F69D2B.png" onerror="this.onerror=null;this.src='/hisai3.github.io/img/404.jpg'" alt="Echarts"/></a><div class="content"><a class="title" href="/hisai3.github.io/2023/01/14/Echarts/" title="Echarts">Echarts</a><time datetime="2023-01-14T06:31:31.000Z" title="发表于 2023-01-14 14:31:31">2023-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/hisai3.github.io/2023/01/14/JS%20%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" title="JS 常用工具"><img src="https://static.runoob.com/images/mix/69599048-B5F4-4F07-80F4-F73EC45C0054.png" onerror="this.onerror=null;this.src='/hisai3.github.io/img/404.jpg'" alt="JS 常用工具"/></a><div class="content"><a class="title" href="/hisai3.github.io/2023/01/14/JS%20%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" title="JS 常用工具">JS 常用工具</a><time datetime="2023-01-14T06:31:31.000Z" title="发表于 2023-01-14 14:31:31">2023-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/hisai3.github.io/2023/01/14/Loading%20%E5%8A%A8%E7%94%BB/" title="Loading 动画"><img src="https://static.runoob.com/images/mix/phpWVg9UN.jpeg" onerror="this.onerror=null;this.src='/hisai3.github.io/img/404.jpg'" alt="Loading 动画"/></a><div class="content"><a class="title" href="/hisai3.github.io/2023/01/14/Loading%20%E5%8A%A8%E7%94%BB/" title="Loading 动画">Loading 动画</a><time datetime="2023-01-14T06:31:31.000Z" title="发表于 2023-01-14 14:31:31">2023-01-14</time></div></div></div></div></div></div></main><footer id="footer" style="background: rgba(0, 0, 0, 0)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By hsiai</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/hisai3.github.io/js/utils.js"></script><script src="/hisai3.github.io/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/hisai3.github.io/js/search/local-search.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script></div></body></html>

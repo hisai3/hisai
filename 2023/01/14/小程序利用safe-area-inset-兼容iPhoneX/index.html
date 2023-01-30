@@ -1,0 +1,175 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>小程序利用safe-area-inset-兼容iPhoneX | 一条咸鱼</title><meta name="author" content="hsiai"><meta name="copyright" content="hsiai"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="小程序利用safe-area-inset-*兼容iPhoneX苹果官方文档 分别创建屏幕上边框，右边框，下边框，左边框安全距离：safe-area-inset-top，safe-area-inset-right，safe-area-inset-bottom，safe-area-inset-left 使用：iOS 11padding-top: constant(safe-area-inset-top">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小程序利用safe-area-inset-兼容iPhoneX">
+<meta property="og:url" content="https://hisai3.github.io/hisai3.github.io/2023/01/14/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%A9%E7%94%A8safe-area-inset-%E5%85%BC%E5%AE%B9iPhoneX/index.html">
+<meta property="og:site_name" content="一条咸鱼">
+<meta property="og:description" content="小程序利用safe-area-inset-*兼容iPhoneX苹果官方文档 分别创建屏幕上边框，右边框，下边框，左边框安全距离：safe-area-inset-top，safe-area-inset-right，safe-area-inset-bottom，safe-area-inset-left 使用：iOS 11padding-top: constant(safe-area-inset-top">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://static.runoob.com/images/mix/3DF91CB4-0A60-444F-971D-88A58C4EDBFD.png">
+<meta property="article:published_time" content="2023-01-14T06:31:31.000Z">
+<meta property="article:modified_time" content="2023-01-15T07:29:20.954Z">
+<meta property="article:author" content="hsiai">
+<meta property="article:tag" content="css">
+<meta property="article:tag" content="微信">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://static.runoob.com/images/mix/3DF91CB4-0A60-444F-971D-88A58C4EDBFD.png"><link rel="shortcut icon" href="https://gitee.com/hisai/image-bed/raw/master/BlogMedia/favicon.ico"><link rel="canonical" href="https://hisai3.github.io/hisai3.github.io/2023/01/14/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%A9%E7%94%A8safe-area-inset-%E5%85%BC%E5%AE%B9iPhoneX/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/hisai3.github.io/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/hisai3.github.io/',
+  algolia: undefined,
+  localSearch: {"path":"/hisai3.github.io/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '小程序利用safe-area-inset-兼容iPhoneX',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-01-15 15:29:20'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="referrer" content="no-referrer" /><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/hisai3.github.io/atom.xml" title="一条咸鱼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://gitee.com/hisai/image-bed/raw/master/BlogMedia/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/hisai3.github.io/archives/"><div class="headline">文章</div><div class="length-num">62</div></a><a href="/hisai3.github.io/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/hisai3.github.io/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/hisai3.github.io/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/hisai3.github.io/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://static.runoob.com/images/mix/3DF91CB4-0A60-444F-971D-88A58C4EDBFD.png')"><nav id="nav"><span id="blog-info"><a href="/hisai3.github.io/" title="一条咸鱼"><span class="site-name">一条咸鱼</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/hisai3.github.io/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/hisai3.github.io/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">小程序利用safe-area-inset-兼容iPhoneX</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-14T06:31:31.000Z" title="发表于 2023-01-14 14:31:31">2023-01-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-15T07:29:20.954Z" title="更新于 2023-01-15 15:29:20">2023-01-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/hisai3.github.io/categories/%E5%BE%AE%E4%BF%A1/">微信</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="小程序利用safe-area-inset-兼容iPhoneX"><a href="#小程序利用safe-area-inset-兼容iPhoneX" class="headerlink" title="小程序利用safe-area-inset-*兼容iPhoneX"></a>小程序利用safe-area-inset-*兼容iPhoneX</h1><p><a target="_blank" rel="noopener" href="https://webkit.org/blog/7929/designing-websites-for-iphone-x/?hmsr=funteas.com&amp;amp;utm_medium=funteas.com&amp;amp;utm_source=funteas.com">苹果官方文档</a></p>
+<p><strong>分别创建屏幕上边框，右边框，下边框，左边框安全距离：</strong><br>safe-area-inset-top，<br>safe-area-inset-right，<br>safe-area-inset-bottom，<br>safe-area-inset-left</p>
+<p><strong>使用：</strong><br><strong>iOS 11</strong><br>padding-top: constant(safe-area-inset-top);<br>padding-right: constant(safe-area-inset-right);<br>padding-bottom: constant(safe-area-inset-bottom);<br>padding-left: constant(safe-area-inset-left);</p>
+<p><strong>iOS 11.2 beta及其后</strong><br>padding-top: env(safe-area-inset-top);<br>padding-right: env(safe-area-inset-right);<br>padding-bottom: env(safe-area-inset-bottom);<br>padding-left: env(safe-area-inset-left);</p>
+<p><strong>兼容性写法：</strong><br>padding-top: 10px;<br>padding-top: constant(safe-area-inset-top);<br>padding-top: env(safe-area-inset-top);</p>
+<p><strong>与calc合用：</strong><br>padding-top: 10px;<br>padding-top: calc(10px + constant(safe-area-inset-top));<br>padding-top: calc(10px + env(safe-area-inset-top));</p>
+<p><strong>终！使用sass@mixin：</strong><br>@mixin x-padding-bottom($val:0px) {<br>padding-bottom: $val;<br>padding-bottom: calc(#{$val &#x2F; 2} + constant(safe-area-inset-bottom)); &#x2F;* no <em>&#x2F;<br>padding-bottom: calc(#{$val &#x2F; 2} + env(safe-area-inset-bottom)); &#x2F;</em> no *&#x2F;<br>}</p>
+<p><strong>注意！！！<br>1、默认值为0px，不是0，原因是calc不支持与0计算。<br>2、小程序单位为rpx，一般都会转换为rpx，但是calc不支持，所以不允许转换，保持px。</strong></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://hisai3.github.io/hisai3.github.io">hsiai</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hisai3.github.io/hisai3.github.io/2023/01/14/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%A9%E7%94%A8safe-area-inset-%E5%85%BC%E5%AE%B9iPhoneX/">https://hisai3.github.io/hisai3.github.io/2023/01/14/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%A9%E7%94%A8safe-area-inset-%E5%85%BC%E5%AE%B9iPhoneX/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hisai3.github.io/hisai3.github.io" target="_blank">一条咸鱼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/hisai3.github.io/tags/css/">css</a><a class="post-meta__tags" href="/hisai3.github.io/tags/%E5%BE%AE%E4%BF%A1/">微信</a></div><div class="post_share"><div class="social-share" data-image="https://static.runoob.com/images/mix/3DF91CB4-0A60-444F-971D-88A58C4EDBFD.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/hisai3.github.io/2023/01/14/%E5%AF%8C%E6%96%87%E6%9C%AC/" title="富文本组件"><img class="cover" src="https://static.runoob.com/images/mix/code-wallpaper-22.jpg" onerror="onerror=null;src='/hisai3.github.io/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">富文本组件</div></div></a></div><div class="next-post pull-right"><a href="/hisai3.github.io/2023/01/14/%E5%AF%BC%E5%87%BA/" title="前端实现导出 exceljs"><img class="cover" src="https://static.runoob.com/images/mix/code-wallpaper-22.jpg" onerror="onerror=null;src='/hisai3.github.io/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">前端实现导出 exceljs</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/hisai3.github.io/2023/01/14/Css%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80grid/" title="Css响应式布局grid"><img class="cover" src="https://static.runoob.com/images/mix/phpWVg9UN.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-14</div><div class="title">Css响应式布局grid</div></div></a></div><div><a href="/hisai3.github.io/2023/01/14/Loading%20%E5%8A%A8%E7%94%BB/" title="Loading 动画"><img class="cover" src="https://static.runoob.com/images/mix/phpWVg9UN.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-14</div><div class="title">Loading 动画</div></div></a></div><div><a href="/hisai3.github.io/2023/01/14/Scss/" title="Scss"><img class="cover" src="https://static.runoob.com/images/mix/65F53C2E-D255-4EE9-A675-F0C0F3F69D2B.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-14</div><div class="title">Scss</div></div></a></div><div><a href="/hisai3.github.io/2023/01/14/css%E5%AE%9E%E7%8E%B0table%E8%A1%A8%E5%A4%B4%E5%92%8C%E5%88%97%E5%9B%BA%E5%AE%9A%E5%8A%9F%E8%83%BD/" title="css实现table表头和列固定功能"><img class="cover" src="https://static.runoob.com/images/mix/65F53C2E-D255-4EE9-A675-F0C0F3F69D2B.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-14</div><div class="title">css实现table表头和列固定功能</div></div></a></div><div><a href="/hisai3.github.io/2023/01/14/less/" title="less"><img class="cover" src="https://static.runoob.com/images/mix/code-wallpaper-18.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-14</div><div class="title">less</div></div></a></div><div><a href="/hisai3.github.io/2023/01/14/tranform%20%E5%9B%BA%E5%AE%9A%E8%A1%A8%E5%A4%B4%E5%92%8C%E5%88%97/" title="transform 固定表头和列"><img class="cover" src="https://static.runoob.com/images/mix/65F53C2E-D255-4EE9-A675-F0C0F3F69D2B.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-14</div><div class="title">transform 固定表头和列</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://gitee.com/hisai/image-bed/raw/master/BlogMedia/avatar.jpg" onerror="this.onerror=null;this.src='/hisai3.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">hsiai</div><div class="author-info__description">有风听风，有雨看雨</div></div><div class="card-info-data site-data is-center"><a href="/hisai3.github.io/archives/"><div class="headline">文章</div><div class="length-num">62</div></a><a href="/hisai3.github.io/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/hisai3.github.io/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hisai3"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%88%A9%E7%94%A8safe-area-inset-%E5%85%BC%E5%AE%B9iPhoneX"><span class="toc-number">1.</span> <span class="toc-text">小程序利用safe-area-inset-*兼容iPhoneX</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/hisai3.github.io/2023/01/14/HEXO%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="HEXO 搭建博客"><img src="https://static.runoob.com/images/mix/65F53C2E-D255-4EE9-A675-F0C0F3F69D2B.png" onerror="this.onerror=null;this.src='/hisai3.github.io/img/404.jpg'" alt="HEXO 搭建博客"/></a><div class="content"><a class="title" href="/hisai3.github.io/2023/01/14/HEXO%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="HEXO 搭建博客">HEXO 搭建博客</a><time datetime="2023-01-14T06:55:31.000Z" title="发表于 2023-01-14 14:55:31">2023-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/hisai3.github.io/2023/01/14/Css%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80grid/" title="Css响应式布局grid"><img src="https://static.runoob.com/images/mix/phpWVg9UN.jpeg" onerror="this.onerror=null;this.src='/hisai3.github.io/img/404.jpg'" alt="Css响应式布局grid"/></a><div class="content"><a class="title" href="/hisai3.github.io/2023/01/14/Css%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80grid/" title="Css响应式布局grid">Css响应式布局grid</a><time datetime="2023-01-14T06:31:31.000Z" title="发表于 2023-01-14 14:31:31">2023-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/hisai3.github.io/2023/01/14/Echarts/" title="Echarts"><img src="https://static.runoob.com/images/mix/65F53C2E-D255-4EE9-A675-F0C0F3F69D2B.png" onerror="this.onerror=null;this.src='/hisai3.github.io/img/404.jpg'" alt="Echarts"/></a><div class="content"><a class="title" href="/hisai3.github.io/2023/01/14/Echarts/" title="Echarts">Echarts</a><time datetime="2023-01-14T06:31:31.000Z" title="发表于 2023-01-14 14:31:31">2023-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/hisai3.github.io/2023/01/14/JS%20%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" title="JS 常用工具"><img src="https://static.runoob.com/images/mix/69599048-B5F4-4F07-80F4-F73EC45C0054.png" onerror="this.onerror=null;this.src='/hisai3.github.io/img/404.jpg'" alt="JS 常用工具"/></a><div class="content"><a class="title" href="/hisai3.github.io/2023/01/14/JS%20%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" title="JS 常用工具">JS 常用工具</a><time datetime="2023-01-14T06:31:31.000Z" title="发表于 2023-01-14 14:31:31">2023-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/hisai3.github.io/2023/01/14/Loading%20%E5%8A%A8%E7%94%BB/" title="Loading 动画"><img src="https://static.runoob.com/images/mix/phpWVg9UN.jpeg" onerror="this.onerror=null;this.src='/hisai3.github.io/img/404.jpg'" alt="Loading 动画"/></a><div class="content"><a class="title" href="/hisai3.github.io/2023/01/14/Loading%20%E5%8A%A8%E7%94%BB/" title="Loading 动画">Loading 动画</a><time datetime="2023-01-14T06:31:31.000Z" title="发表于 2023-01-14 14:31:31">2023-01-14</time></div></div></div></div></div></div></main><footer id="footer" style="background: rgba(0, 0, 0, 0)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By hsiai</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/hisai3.github.io/js/utils.js"></script><script src="/hisai3.github.io/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/hisai3.github.io/js/search/local-search.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script></div></body></html>
