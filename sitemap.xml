@@ -629,6 +629,13 @@
   </url>
   
   <url>
+    <loc>https://hisai3.github.io/hisai3.github.io/tags/Vue%E6%8C%87%E4%BB%A4/</loc>
+    <lastmod>2023-01-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://hisai3.github.io/hisai3.github.io/tags/Vue/</loc>
     <lastmod>2023-01-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -636,7 +643,7 @@
   </url>
   
   <url>
-    <loc>https://hisai3.github.io/hisai3.github.io/tags/Vue%E6%8C%87%E4%BB%A4/</loc>
+    <loc>https://hisai3.github.io/hisai3.github.io/tags/antV/</loc>
     <lastmod>2023-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -651,13 +658,6 @@
   
   <url>
     <loc>https://hisai3.github.io/hisai3.github.io/tags/drag/</loc>
-    <lastmod>2023-01-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://hisai3.github.io/hisai3.github.io/tags/antV/</loc>
     <lastmod>2023-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
