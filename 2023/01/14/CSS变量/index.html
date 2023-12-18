@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>CSS变量和@property | 一条咸鱼</title><meta name="author" content="一条咸鱼"><meta name="copyright" content="一条咸鱼"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="css实现table表头和列固定功能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS变量和@property">
+<meta property="og:url" content="https://hisai3.github.io/hisai3.github.io/2023/01/14/CSS%E5%8F%98%E9%87%8F/index.html">
+<meta property="og:site_name" content="一条咸鱼">
+<meta property="og:description" content="css实现table表头和列固定功能">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://static.runoob.com/images/mix/rfwDB3L.png">
+<meta property="article:published_time" content="2023-01-14T06:31:31.000Z">
+<meta property="article:modified_time" content="2023-04-13T04:00:05.417Z">
+<meta property="article:author" content="一条咸鱼">
+<meta property="article:tag" content="css">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://static.runoob.com/images/mix/rfwDB3L.png"><link rel="shortcut icon" href="https://gitee.com/hisai/image-bed/raw/master/BlogMedia/favicon.ico"><link rel="canonical" href="https://hisai3.github.io/hisai3.github.io/2023/01/14/CSS%E5%8F%98%E9%87%8F/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CSS变量和@property',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-13 12:00:05'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="referrer" content="no-referrer" /><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="一条咸鱼" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://gitee.com/hisai/image-bed/raw/master/BlogMedia/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">70</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://static.runoob.com/images/mix/rfwDB3L.png')"><nav id="nav"><span id="blog-info"><a href="/" title="一条咸鱼"><span class="site-name">一条咸鱼</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">CSS变量和@property</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-14T06:31:31.000Z" title="发表于 2023-01-14 14:31:31">2023-01-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-13T04:00:05.417Z" title="更新于 2023-04-13 12:00:05">2023-04-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/css/">css</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="CSS变量和-property"><a href="#CSS变量和-property" class="headerlink" title="CSS变量和@property"></a>CSS变量和@property</h1><h2 id="CSS变量-var"><a href="#CSS变量-var" class="headerlink" title="CSS变量 var()"></a>CSS变量 var()</h2><p>CSS 变量是由CSS作者定义的实体，其中包含要在整个文档中重复使用的特定值。使用<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7&spm=1001.2101.3001.7020">自定义属性</a>来设置变量名，并使用特定的 <strong>var()</strong> 来访问。（比如  color: <strong>var(–main-color)</strong>;）。</p>
+<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a><strong>基本用法</strong></h3><blockquote>
+<p><strong>CSS变量定义的作用域只在定义该变量的元素及其后代元素中有效</strong>。如果需要在整个页面中使用该变量，可以将其定义在:root中</p>
+</blockquote>
+<p>声明一个<strong>局部</strong>变量：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">element &#123;</span><br><span class="line">	--main-bg-color: brown;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用一个<strong>局部</strong>变量：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">element &#123;</span><br><span class="line">	background-color: var(--main-bg-color);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/:root">Mdn Web Docs</a></p>
+<p>声明一个 <strong>全局</strong> CSS 变量：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">    <span class="attr">--global-color</span>: <span class="number">#666</span>;</span><br><span class="line">    <span class="attr">--pane-padding</span>: <span class="number">5px</span> <span class="number">42px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用一个 <strong>全局</strong> CSS 变量：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.demo</span>&#123;<span class="attribute">color</span>: <span class="built_in">var</span>(--global-color);&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="开始使用CSS变量"><a href="#开始使用CSS变量" class="headerlink" title="开始使用CSS变量"></a><strong>开始使用CSS变量</strong></h3><p>让我们从这个简单的例子开始，拥有不同类名的元素有相同的颜色：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.one</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">    <span class="attribute">background-color</span>: brown;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.two</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">    <span class="attribute">background-color</span>: black;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">150px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">70px</span>;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.three</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">    <span class="attribute">background-color</span>: brown;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">75px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.four</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">    <span class="attribute">background-color</span>: brown;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.five</span> &#123;</span><br><span class="line">	<span class="attribute">background-color</span>: brown;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>把它应用到下面这段HTML：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;one&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;two&quot;</span>&gt;</span>Text <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;five&quot;</span>&gt;</span>- more text<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;three&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">class</span>=<span class="string">&quot;four&quot;</span>&gt;</span>Lorem Ipsum<span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>注意CSS中重复的地方，brown的背景色作用在不同的元素上面。我们可以将背景色定义在更高的层级，然后通过CSS继承解决这个问题。在某些情况下，这种方法不一定可行。定义一个变量在:root<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E4%BC%AA%E7%B1%BB&spm=1001.2101.3001.7020">伪类</a>上，使用变量来减少重复的代码。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">    <span class="attr">--main-bg-color</span>: brown;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.one</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">var</span>(--main-bg-color);</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.two</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">    <span class="attribute">background-color</span>: black;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">150px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">70px</span>;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.three</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">var</span>(--main-bg-color);</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">75px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.four</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">var</span>(--main-bg-color);</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.five</span> &#123;</span><br><span class="line">	<span class="attribute">background-color</span>: <span class="built_in">var</span>(--main-bg-color);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>只需要规范地声明所需的属性，就能得到和上面例子相同的结果</p>
+<h3 id="CSS变量的继承"><a href="#CSS变量的继承" class="headerlink" title="CSS变量的继承"></a><strong>CSS变量的继承</strong></h3><p>自定义属性同样支持继承。一个元素上没有定义自定义属性，该自定义属性的值会继承其父元素：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;one&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;two&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;three&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;four&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>定义下面的CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.two</span> &#123; <span class="attr">--test</span>: <span class="number">10px</span>; &#125;</span><br><span class="line"><span class="selector-class">.three</span> &#123; <span class="attr">--test</span>: <span class="number">2em</span>; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>var(--test)的结果是：</code></p>
+<ul>
+<li><code>class=&quot;two&quot;</code> 对应的节点: <code>10px</code></li>
+<li><code>class=&quot;three&quot; 对应的节点</code>: element: <code>2em</code></li>
+<li><code>class=&quot;four&quot;</code> 对应的节点: <code>10px</code> (inherited from its parent)</li>
+<li><code>class=&quot;one&quot;</code> 对应的节点: <em>无效值</em>, 即此属性值为未被自定义css变量覆盖的默认值</li>
+</ul>
+<h3 id="在JS中修改变量"><a href="#在JS中修改变量" class="headerlink" title="在JS中修改变量"></a>在JS中修改变量</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取根元素</span></span><br><span class="line"><span class="keyword">var</span> r = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;:root&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建获取变量值的函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">myFunction_get</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// Get the styles (properties and values) for the root</span></span><br><span class="line">  <span class="keyword">var</span> rs = <span class="title function_">getComputedStyle</span>(r);</span><br><span class="line">  <span class="comment">// Alert the value of the --blue variable</span></span><br><span class="line">  <span class="title function_">alert</span>(<span class="string">&quot;The value of --blue is: &quot;</span> + rs.<span class="title function_">getPropertyValue</span>(<span class="string">&#x27;--blue&#x27;</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建设置变量值的函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">myFunction_set</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// Set the value of variable --blue to another value (in this case &quot;lightblue&quot;)</span></span><br><span class="line">  r.<span class="property">style</span>.<span class="title function_">setProperty</span>(<span class="string">&#x27;--blue&#x27;</span>, <span class="string">&#x27;lightblue&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="在Vue中配合数据动态修改css变量"><a href="#在Vue中配合数据动态修改css变量" class="headerlink" title="在Vue中配合数据动态修改css变量"></a>在Vue中配合数据动态修改css变量</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;span v-for=&quot;item in list&quot; :style=&quot;&#123;&#x27;--text&#x27;: item.text, &#x27;--color&#x27;: item.color&#125;&quot;&gt;&lt;/span&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    name: &#x27;&#x27;,</span><br><span class="line">    components: &#123;&#125;,</span><br><span class="line">    props: &#123;&#125;,</span><br><span class="line">    data() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            list: [</span><br><span class="line">                &#123; text: &#x27;&quot;中&quot;&#x27;, color: &#x27;red&#x27; &#125;,</span><br><span class="line">                &#123; text: &#x27;&quot;华&quot;&#x27;, color: &#x27;orange&#x27; &#125;,</span><br><span class="line">                &#123; text: &#x27;&quot;人&quot;&#x27;, color: &#x27;yellow&#x27; &#125;,</span><br><span class="line">                &#123; text: &#x27;&quot;民&quot;&#x27;, color: &#x27;orange&#x27; &#125;,</span><br><span class="line">                &#123; text: &#x27;&quot;共&quot;&#x27;, color: &#x27;green&#x27; &#125;,</span><br><span class="line">                &#123; text: &#x27;&quot;和&quot;&#x27;, color: &#x27;cyan&#x27; &#125;,</span><br><span class="line">                &#123; text: &#x27;&quot;国&quot;&#x27;, color: &#x27;blue&#x27; &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;scss&quot; scoped&gt;</span><br><span class="line">span::after &#123;</span><br><span class="line">    content: var(--text);</span><br><span class="line">    background-color: var(--color);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="property"><a href="#property" class="headerlink" title="@property"></a>@property</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/BASK2311/article/details/128048131">原文</a></p>
+<p>使用模板：</p>
+<ul>
+<li><p>@property –property-name 中的 –property-name 就是自定义属性的名称，定义后可在 CSS 中通过 var(–property-name) 进行引用</p>
+</li>
+<li><p>syntax：该自定义属性的语法规则，也可以理解为表示定义的自定义属性的类型</p>
+<ul>
+<li><p>支持的 <strong>syntax</strong> 语法类型:</p>
+<blockquote>
+<ul>
+<li>length</li>
+<li>number</li>
+<li>percentage</li>
+<li>length-percentage</li>
+<li>color</li>
+<li>image</li>
+<li>url</li>
+<li>integer</li>
+<li>angle</li>
+<li>time</li>
+<li>resolution</li>
+<li>transform-list</li>
+<li>transform-function</li>
+<li>custom-ident (a custom identifier string)</li>
+</ul>
+</blockquote>
+</li>
+<li><p>syntax 中的 <code>+</code>、<code>#</code>、<code>|</code> 符号</p>
+<blockquote>
+<ul>
+<li><code>syntax: &#39;&lt;color&gt;#&#39;</code> ：接受逗号分隔的颜色值列表 –img-url:url(img01.png),url(img02.png);</li>
+<li><code>syntax: &#39;&lt;length&gt;+&#39;</code> ：接受以空格分隔的长度值列表  –padding:0 10px;</li>
+<li><code>syntax: &#39;&lt;length&gt; | &lt;length&gt;+&#39;</code>：接受单个长度或者以空格分隔的长度值列表</li>
+<li><code>syntax:  &#39;&lt;percentage&gt; | &lt;angle&gt;&#39;;</code>  使用百分比也可以使用角度</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>inherits：是否允许继承</p>
+</li>
+<li><p>initial-value：初始值</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="keyword">@property</span> --property-name &#123;</span></span><br><span class="line"><span class="language-css">  syntax: <span class="string">&#x27;&lt;color&gt;&#x27;</span>;</span></span><br><span class="line"><span class="language-css">  inherits: false;</span></span><br><span class="line"><span class="language-css">  initial-value: <span class="number">#fff</span>;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"> </span></span><br><span class="line"><span class="language-css"><span class="selector-tag">p</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">color</span>: <span class="built_in">var</span>(--property-name);</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在 <code>script</code> 中使用  <code>CSS.registerProperty</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="variable constant_">CSS</span>.<span class="title function_">registerProperty</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">name</span>: <span class="string">&quot;--property-name&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">syntax</span>: <span class="string">&quot;&lt;color&gt;&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">inherits</span>: <span class="literal">false</span>,</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">initialValue</span>: <span class="string">&quot;#c0ffee&quot;</span></span></span><br><span class="line"><span class="language-javascript">&#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://hisai3.github.io/hisai3.github.io">一条咸鱼</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hisai3.github.io/hisai3.github.io/2023/01/14/CSS%E5%8F%98%E9%87%8F/">https://hisai3.github.io/hisai3.github.io/2023/01/14/CSS%E5%8F%98%E9%87%8F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hisai3.github.io/hisai3.github.io" target="_blank">一条咸鱼</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/css/">css</a></div><div class="post_share"><div class="social-share" data-image="https://static.runoob.com/images/mix/rfwDB3L.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/01/14/HEXO%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="HEXO 搭建博客"><img class="cover" src="https://static.runoob.com/images/mix/code-wallpaper-15.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">HEXO 搭建博客</div></div></a></div><div class="next-post pull-right"><a href="/2023/01/14/Css%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80grid/" title="Css响应式布局grid"><img class="cover" src="https://static.runoob.com/images/mix/69599048-B5F4-4F07-80F4-F73EC45C0054.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Css响应式布局grid</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/01/14/Css%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80grid/" title="Css响应式布局grid"><img class="cover" src="https://static.runoob.com/images/mix/69599048-B5F4-4F07-80F4-F73EC45C0054.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-14</div><div class="title">Css响应式布局grid</div></div></a></div><div><a href="/2023/01/14/Loading%20%E5%8A%A8%E7%94%BB/" title="Loading 动画"><img class="cover" src="https://static.runoob.com/images/mix/code-wallpaper-22.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-14</div><div class="title">Loading 动画</div></div></a></div><div><a href="/2023/01/14/Scss/" title="Scss"><img class="cover" src="https://static.runoob.com/images/mix/rfwDB3L.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-14</div><div class="title">Scss</div></div></a></div><div><a href="/2023/01/14/css%E5%AE%9E%E7%8E%B0table%E8%A1%A8%E5%A4%B4%E5%92%8C%E5%88%97%E5%9B%BA%E5%AE%9A%E5%8A%9F%E8%83%BD/" title="css实现table表头和列固定功能"><img class="cover" src="https://static.runoob.com/images/mix/69599048-B5F4-4F07-80F4-F73EC45C0054.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-14</div><div class="title">css实现table表头和列固定功能</div></div></a></div><div><a href="/2023/01/14/less/" title="less"><img class="cover" src="https://static.runoob.com/images/mix/3DF91CB4-0A60-444F-971D-88A58C4EDBFD.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-14</div><div class="title">less</div></div></a></div><div><a href="/2023/01/14/tranform%20%E5%9B%BA%E5%AE%9A%E8%A1%A8%E5%A4%B4%E5%92%8C%E5%88%97/" title="transform 固定表头和列"><img class="cover" src="https://static.runoob.com/images/mix/65F53C2E-D255-4EE9-A675-F0C0F3F69D2B.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-14</div><div class="title">transform 固定表头和列</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://gitee.com/hisai/image-bed/raw/master/BlogMedia/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">一条咸鱼</div><div class="author-info__description">有风听风，有雨看雨</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">70</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hisai3"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS%E5%8F%98%E9%87%8F%E5%92%8C-property"><span class="toc-number">1.</span> <span class="toc-text">CSS变量和@property</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS%E5%8F%98%E9%87%8F-var"><span class="toc-number">1.1.</span> <span class="toc-text">CSS变量 var()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-number">1.1.1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8CSS%E5%8F%98%E9%87%8F"><span class="toc-number">1.1.2.</span> <span class="toc-text">开始使用CSS变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS%E5%8F%98%E9%87%8F%E7%9A%84%E7%BB%A7%E6%89%BF"><span class="toc-number">1.1.3.</span> <span class="toc-text">CSS变量的继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8JS%E4%B8%AD%E4%BF%AE%E6%94%B9%E5%8F%98%E9%87%8F"><span class="toc-number">1.1.4.</span> <span class="toc-text">在JS中修改变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8Vue%E4%B8%AD%E9%85%8D%E5%90%88%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E4%BF%AE%E6%94%B9css%E5%8F%98%E9%87%8F"><span class="toc-number">1.1.5.</span> <span class="toc-text">在Vue中配合数据动态修改css变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#property"><span class="toc-number">1.2.</span> <span class="toc-text">@property</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/12/18/Linux%E5%91%BD%E4%BB%A4/" title="Linux基础命令"><img src="https://static.runoob.com/images/mix/code-wallpaper-18.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux基础命令"/></a><div class="content"><a class="title" href="/2023/12/18/Linux%E5%91%BD%E4%BB%A4/" title="Linux基础命令">Linux基础命令</a><time datetime="2023-12-18T06:31:31.000Z" title="发表于 2023-12-18 14:31:31">2023-12-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/18/MySQL/" title="MySQL"><img src="https://static.runoob.com/images/mix/rfwDB3L.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL"/></a><div class="content"><a class="title" href="/2023/12/18/MySQL/" title="MySQL">MySQL</a><time datetime="2023-12-18T02:31:31.000Z" title="发表于 2023-12-18 10:31:31">2023-12-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/20/Docker/" title="无题"><img src="https://static.runoob.com/images/mix/65F53C2E-D255-4EE9-A675-F0C0F3F69D2B.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2023/11/20/Docker/" title="无题">无题</a><time datetime="2023-11-20T03:50:32.066Z" title="发表于 2023-11-20 11:50:32">2023-11-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/07/Kali/" title="无题"><img src="https://fastly.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2023/07/07/Kali/" title="无题">无题</a><time datetime="2023-07-07T01:04:55.645Z" title="发表于 2023-07-07 09:04:55">2023-07-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/04/10/API%20Cloud/" title="API Cloud"><img src="https://static.runoob.com/images/mix/3DF91CB4-0A60-444F-971D-88A58C4EDBFD.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="API Cloud"/></a><div class="content"><a class="title" href="/2023/04/10/API%20Cloud/" title="API Cloud">API Cloud</a><time datetime="2023-04-10T06:31:31.000Z" title="发表于 2023-04-10 14:31:31">2023-04-10</time></div></div></div></div></div></div></main><footer id="footer" style="background: rgba(0, 0, 0, 0)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 一条咸鱼</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script></div></body></html>
